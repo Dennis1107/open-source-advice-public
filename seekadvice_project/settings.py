@@ -66,13 +66,6 @@ else:
     DEFAULT_FROM_EMAIL = "info@open-source-advice.com"  
     SERVER_EMAIL = "info@open-source-advice.com"
 
-# ANYMAIL = {
-#         "POSTMARK_SERVER_TOKEN": os.environ.get('postmark_server_token'),
-# }
-# EMAIL_BACKEND = "anymail.backends.postmark.EmailBackend"
-# DEFAULT_FROM_EMAIL = "info@open-source-advice.com"  
-# SERVER_EMAIL = "info@open-source-advice.com"
-
 
 AUTH_USER_MODEL = "seekadvice_app.CustomUser" 
 
