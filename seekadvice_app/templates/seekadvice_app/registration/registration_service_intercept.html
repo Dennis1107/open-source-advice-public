@@ -1,0 +1,76 @@
+{% extends "seekadvice_app/base_outside.html" %}
+{% load static %}
+
+.hello {
+  background-color
+}
+
+
+
+{% block body_block %}
+
+
+
+
+<nav aria-label="Progress">
+    <ol role="list" class="border border-gray-300 rounded-md divide-y divide-gray-300 md:flex md:divide-y-0">
+      <li class="relative md:flex-1 md:flex">
+        <!-- Completed Step -->
+        <a href="/register1" class="group flex items-center w-full">
+          <span class="px-6 py-4 flex items-center text-sm font-medium">
+            <span class="flex-shrink-0 w-10 h-10 flex items-center justify-center bg-indigo-600 rounded-full group-hover:bg-indigo-800">
+              <!-- Heroicon name: solid/check -->
+              <svg class="w-6 h-6 text-white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+              </svg>
+            </span>
+            <span class="ml-4 text-sm font-medium text-gray-900">Registration</span>
+          </span>
+        </a>
+  
+        <!-- Arrow separator for lg screens and up -->
+        <div class="hidden md:block absolute top-0 right-0 h-full w-5" aria-hidden="true">
+          <svg class="h-full w-full text-gray-300" viewBox="0 0 22 80" fill="none" preserveAspectRatio="none">
+            <path d="M0 -2L20 40L0 82" vector-effect="non-scaling-stroke" stroke="currentcolor" stroke-linejoin="round" />
+          </svg>
+        </div>
+      </li>
+  
+      <li class="relative md:flex-1 md:flex">
+        <!-- Current Step -->
+        <a href="/register2" class="px-6 py-4 flex items-center text-sm font-medium" aria-current="step">
+          <span class="flex-shrink-0 w-10 h-10 flex items-center justify-center border-2 border-indigo-600 rounded-full">
+            <span class="text-indigo-600">02</span>
+          </span>
+          <span class="ml-4 text-sm font-medium text-indigo-600">Offering Service</span>
+        </a>
+  
+        <!-- Arrow separator for lg screens and up -->
+        <div class="hidden md:block absolute top-0 right-0 h-full w-5" aria-hidden="true">
+          <svg class="h-full w-full text-gray-300" viewBox="0 0 22 80" fill="none" preserveAspectRatio="none">
+            <path d="M0 -2L20 40L0 82" vector-effect="non-scaling-stroke" stroke="currentcolor" stroke-linejoin="round" />
+          </svg>
+        </div>
+      </li>
+  
+      
+    </ol>
+  </nav>
+
+    <div class="flex justify-center flex-wrap mt-7">
+        <svg xmlns="http://www.w3.org/2000/svg" class="fill-green-100 h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+        <h2 class="text-lg leading-6 font-medium text-gray-900"> Successfully registered!</h2>
+    </div>
+
+    <p class="text-center mt-1 text-sm text-gray-500">If seek for help then browse created offers. If you are involved in Open Source then feel free to create a service Offer</p>
+
+    <div class="pt-5">
+        <div class="flex justify-center">
+            <a class="bg-white py-2 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="/seekadvice">Browse Offers</a>
+            <a class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="/register2">Create Offer</a>
+        </div>
+    </div>
+{% endblock %}
+

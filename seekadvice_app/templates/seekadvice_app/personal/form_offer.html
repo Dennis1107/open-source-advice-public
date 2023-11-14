@@ -1,0 +1,198 @@
+
+<form enctype="multipart/form-data" method="POST" class="space-y-8">
+    {% csrf_token %}
+    <div class="space-y-8">        
+        <div class="pt-8">
+          <div class="mt-6">
+            <fieldset>
+                <h3 class="text-lg leading-6 font-medium text-gray-900">Offering Service</h3>
+                <p class="mt-1 text-sm text-gray-500">What kind of services would you like to offer?</p>
+              <div class="mt-4 space-y-4">
+                <div class="relative flex items-start">
+                  <div class="flex items-center h-5">
+                    {{ profile_form.consulting }}
+                  </div>
+                  <div class="ml-3 text-sm">
+                    <label for="comments" class="font-medium text-gray-700">Consulting</label>
+                    <p class="text-gray-500">Consulting on specific challenges or projects</p>
+                  </div>
+                </div>
+                <div class="relative flex items-start">
+                  <div class="flex items-center h-5">
+                    {{ profile_form.generaladvice }}
+                  </div>
+                  <div class="ml-3 text-sm">
+                    <label for="candidates" class="font-medium text-gray-700">General Advice</label>
+                    <p class="text-gray-500">Genereal advice without specific problem (projects, career, ...)</p>
+                  </div>
+                </div>
+                <div class="relative flex items-start">
+                  <div class="flex items-center h-5">
+                    {{ profile_form.talk }}
+                  </div>
+                  <div class="ml-3 text-sm">
+                    <label for="offers" class="font-medium text-gray-700">Tech Talks</label>
+                    <p class="text-gray-500">Presentation of specific technology.</p>
+                  </div>
+                </div>
+              </div>
+            </fieldset>
+            
+          </div>
+        </div>
+      </div>
+
+      
+
+      <div class="mt-4 space-y-4">
+        <h3 class="text-lg leading-6 font-medium text-gray-900">Add your Open Source Expertise</h3>
+        <p class="mt-1 text-sm text-gray-500">Select Open Source project <span class="font-bold underline">maintained</span> by you</p>
+        <select name="serviceareas" id="serviceareas" multiple name="state[]">
+          <option value="">Select Open Source project</option>
+          {% for element in service_areas_list %}
+            {% if element in selected_areas_maintainer %} 
+                <option selected value="{{ element }}">{{ element }}</option> 
+            {% endif %}        
+          {% endfor %}
+        </select>
+
+        <p class="mt-1 text-sm text-gray-500">Select Open Source project where you have <span class="font-bold underline">contributed</span></p>
+        <select name="serviceareas2" id="serviceareas2" multiple name="state[]">
+          <option value="">Select Open Source project</option>
+          {% for element in service_areas_list %}
+            {% if element in selected_areas_contributor %} 
+                <option selected value="{{ element }}">{{ element }}</option> 
+            {% endif %}    
+          {% endfor %}
+        </select>
+
+        <p class="mt-1 text-sm text-gray-500">Select Open Source project where you have <span class="font-bold underline">other expertise</span></p>
+        <select name="serviceareas3" id="serviceareas3" multiple name="state[]">
+          <option value="">Select Open Source project</option>
+          {% for element in service_areas_list %}
+            {% if element in selected_areas_expert %} 
+                <option selected value="{{ element }}">{{ element }}</option> 
+            {% endif %}    
+          {% endfor %}
+        </select>
+      </div>
+
+
+
+
+    
+      <div class="mt-4 space-y-4">    
+        <h3 class="text-lg leading-6 font-medium text-gray-900">Technology of expertise</h3>
+        <p class="mt-1 text-sm text-gray-500">Which technolgy do you use?</p>
+        <select name = "servicetechnology" id="servicetechnology" multiple name="state[]">
+          <option value="">Select technology</option>
+          {% for element in service_technology_list %}
+            {% if element in selected_technologies %} 
+                <option selected value="{{ element }}">{{ element }}</option> 
+            {% else %} 
+                <option value="{{ element }}">{{ element }}</option>
+            {% endif %}    
+          {% endfor %}
+        </select>
+      </div>
+
+      <div class="sm:col-span-4">
+        <label for="username" class="block text-sm font-medium text-gray-700"> Hourly rate in $ </label>
+        <div class="mt-1 flex rounded-md shadow-sm">
+          {{ profile_form.price }}
+        </div>
+        <p class="px-2 bg-white text-red-500">{{ profile_form.price.errors.as_text }}</p> 
+      </div>
+
+      <div class="sm:col-span-6">
+        <label for="about" class="block text-sm font-medium text-gray-700"> Description of your offer </label>
+        <div class="mt-1">
+            {{ profile_form.description }}
+        </div>
+        <p class="px-2 bg-white text-red-500">{{ profile_form.description.errors.as_text }}</p> 
+      </div>
+
+      
+      <div class="pt-5">
+        <div class="flex justify-end">
+          <a class="bg-white py-2 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="/seekadvice">Skip</a>
+          <button type="submit" class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Next</button>
+        </div>
+      </div>
+  </form>
+
+
+  
+  
+
+  
+
+  <script>  
+    new TomSelect('#serviceareas',{
+      plugins: {
+        remove_button:{
+          title:'Remove this item',
+        },
+        clear_button:{
+          'title':'Remove all selected options',
+        }
+      },
+      create: true,
+      render:{
+        item: function(data, escape) {
+          return '<div style = "background:#FEF9C3;" class="flex-shrink-0 inline-block px-2 py-0.5 text-neutral-600 text-xs font-medium bg-neutral-100 rounded-full">' + escape(data.text) + '</div>';
+        }
+      }
+    });
+
+    new TomSelect('#serviceareas2',{
+      plugins: {
+        remove_button:{
+          title:'Remove this item',
+        },
+        clear_button:{
+          'title':'Remove all selected options',
+        }
+      },
+      create: true,
+      render:{
+        item: function(data, escape) {
+          return '<div style = "background:#C2D4D1;" class="flex-shrink-0 inline-block px-2 py-0.5 text-neutral-600 text-xs font-medium bg-neutral-100 rounded-full">' + escape(data.text) + '</div>';
+        }
+      }
+    });
+
+    new TomSelect('#serviceareas3',{
+      plugins: {
+        remove_button:{
+          title:'Remove this item',
+        },
+        clear_button:{
+          'title':'Remove all selected options',
+        }
+      },
+      create: true,
+      render:{
+        item: function(data, escape) {
+          return '<div style = "background:#EFEBDC;" class="flex-shrink-0 inline-block px-2 py-0.5 text-neutral-600 text-xs font-medium bg-neutral-100 rounded-full">' + escape(data.text) + '</div>';
+        }
+      }
+    });
+
+
+    new TomSelect('#servicetechnology',{
+      create: true,
+      render:{
+        item: function(data, escape) {
+          return '<div style = "background:#ddfada;" class="flex-shrink-0 inline-block px-2 py-0.5 text-green-800 text-xs font-medium bg-green-100 rounded-full">' + escape(data.text) + '</div>';
+        }
+      }
+    });
+
+
+    function handleClick(e) {
+      console.log("huhu")
+    }
+
+
+  </script>

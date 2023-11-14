@@ -1,0 +1,18 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Activate email</title>
+</head>
+<body>
+    <h2>Please activate your email</h2>
+    <h2><a href="http://{{ domain }}{% url 'activate' uidb64=uid token=token %}">Activate</a></h2>
+    
+
+    <p><em>Please notice that this is an automatic generated email. If you are not the right person please contact info@open-source-advice.com</em></p>
+    <a href="https://open-source-advice.com"><img src="https://res.cloudinary.com/dqdamgdeq/image/upload/v1658572526/logo_lfeiub.png"></a>
+</body>
+</html>

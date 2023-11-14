@@ -1,0 +1,122 @@
+{% load static %}
+
+<li class="col-span-1 bg-white rounded-lg shadow divide-y divide-gray-200">
+    <div class="w-full flex items-center justify-between pr-6 pl-6 pt-4 pb-4 space-x-6">
+      <div class="flex-1 truncate">
+        <div class="flex items-center space-x-3">
+          <a href="/userprofile/username={{ serviceOffer.user.id }}">
+            <h3 class="text-gray-900 text-sm font-medium truncate">{{ serviceOffer.user.displayname }}</h3>
+          </a>         
+        </div>
+        <p class="mt-1 text-gray-500 text-sm truncate">{{ serviceOffer.user.jobtitle }}</p>
+      </div>
+      <a href="/userprofile/username={{ serviceOffer.user.id }}">        
+        {% if serviceOffer.user.user_avatar.url != None %}
+        <img
+          class="w-10 h-10 bg-gray-300 rounded-full flex-shrink-0 hover:scale-125"
+          src="{{ serviceOffer.user.user_avatar.url }}"
+          alt="Profile" 
+          aria-hidden="true"
+        />
+        {% else %}
+        <img
+        class="w-10 h-10 bg-gray-300 rounded-full flex-shrink-0 border-2 hover:scale-125"
+        src="{% static 'img/default_avatar.PNG' %}" 
+        alt="Profile" 
+        aria-hidden="true"
+        />
+        {% endif %}
+      </a>
+      
+    </div>
+    
+    <div class="flex-1 pr-6 pl-6 pt-4 pb-4">
+        <div class="flex items-center space-x-3">
+            <h3 class="text-gray-900 text-sm font-medium truncate">Provides following services:</h3>
+        </div>
+
+        <div class="flex justify-left flex-wrap">
+            <div class="form-check form-check-inline" style="margin-right:5px;">
+                <input {% if serviceOffer.consulting == True %} checked="checked"{% endif %} disabled id="consulting" aria-describedby="consulting-description" name="consulting" type="checkbox" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded">
+                <label class="mt-1 text-gray-500 text-sm truncate">Consulting</label>
+            </div>
+            <div class="form-check form-check-inline" style="margin-right:5px;">
+                <input {% if serviceOffer.generaladvice == True %} checked="checked"{% endif %} disabled id="generaladvice" aria-describedby="generaladvice-description" name="generaladvice" type="checkbox" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded">
+                <label class="mt-1 text-gray-500 text-sm truncate">General Advice</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input {% if serviceOffer.talk == True %} checked="checked"{% endif %} disabled id="talk" aria-describedby="talk-description" name="talk" type="checkbox" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded">
+                <label class="mt-1 text-gray-500 text-sm truncate">Speaking</label>
+            </div>
+        </div>
+        
+          
+        <!-- neu -->
+        <h3 style="margin-top: 7px;" class="text-gray-900 text-sm font-medium truncate">Can help in these {{ servicetype }}:</h3>
+        <div class="flex flex-wrap truncate">
+            
+            {% for service in serviceOffer.serviceareasrole_set.all %}
+                {% if service.role == "Maintainer" %}
+                  <span style="margin-top: 3px;" class="mr-2 max-h-6 flex-shrink-0 inline-block px-2 py-0.5 text-green-800 text-xs font-medium bg-green-100 rounded-full">{{ service.role_serviceareas.serviceareas }}</span>
+                {% elif service.role == "Contributor" %}
+                  <span style="margin-top: 3px;" class="mr-2 max-h-6 flex-shrink-0 inline-block px-2 py-0.5 text-sky-800 text-xs font-medium bg-sky-400 rounded-full">{{ service.role_serviceareas.serviceareas }}</span>
+                {% else %}
+                  <span style="margin-top: 3px;" class="mr-2 max-h-6 flex-shrink-0 inline-block px-2 py-0.5 text-neutral-600 text-xs font-medium bg-neutral-100 rounded-full">{{ service.role_serviceareas.serviceareas }}</span>
+                {% endif %}
+            {% endfor %}                
+        </div>
+        
+        
+        
+        {% if isDetailView == False %}
+          <a href="/serviceoffer/id={{ serviceOffer.id }}">
+            <h3 style="margin-top: 7px;" class="text-center text-gray-900 text-sm font-medium truncate underline">Show Details</h3>
+          </a>
+        {% else %}                
+          <h3 style="margin-top: 7px;" class="text-gray-900 text-sm font-medium truncate">Uses these technologies:</h3>
+          <div class="flex space-x-2 flex-wrap truncate">                
+              {% for themen in serviceOffer.user_service_technology.all %} 
+                  <span style="margin-top: 3px;" class="flex-shrink-0 inline-block px-2 py-0.5 text-green-800 text-xs font-medium bg-green-100 rounded-full">{{ themen }}</span>
+              {% endfor %}  
+          </div>          
+          <h3 style="margin-top: 7px;" class="text-gray-900 text-sm font-medium truncate">Description:</h3>
+          <p class="break-all mb-2 text-gray-500 dark:text-gray-400">{{ serviceOffer.description }}</p>
+        {% endif %}
+
+         
+
+    </div>                
+
+    <div class="-mt-px flex divide-x divide-gray-200">
+      <div class="-ml-px w-0 flex-1 flex">
+        <a href="#" class="relative w-0 flex-1 inline-flex items-center justify-center py-4 text-sm text-gray-700 font-medium border border-transparent rounded-br-lg hover:text-gray-500">
+          <!-- Heroicon name: solid/phone -->
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+          <span class="ml-3">{{ serviceOffer.price }}$ per hour</span>
+        </a>
+      </div>
+        {% if user.is_authenticated %}
+          {% include "./cards_modal.html" %}
+        {% else %}
+        <div class="w-0 flex-1 flex">
+          <button data-tooltip-target="tooltip-click" data-tooltip-trigger="click" type="button" class="relative -mr-px w-0 flex-1 inline-flex items-center justify-center py-4 text-sm text-gray-700 font-medium border border-transparent rounded-bl-lg hover:text-gray-500">
+            <svg class="w-5 h-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+              <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
+              <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
+            </svg>
+            <span class="ml-3">Email</span>
+          </button>
+          <div id="tooltip-click" role="tooltip" class="inline-block absolute invisible z-10 py-2 px-3 text-sm font-medium text-black bg-red-400 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
+              You need to login first
+              <div class="tooltip-arrow" data-popper-arrow></div>
+          </div>   
+        </div>              
+        {% endif %}
+    </div>
+  </li>
+
+
+
+

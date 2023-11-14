@@ -1,0 +1,12 @@
+<ul id="seekAdviceItemList" role="list" class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 mb-20 scroll-smooth">  
+    {% if emptyQuery != "" %}
+    <li>
+        <p class="mt-4 max-w-2xl text-base text-gray-500 lg:mx-auto">{{ emptyQuery }}
+    </li>
+    {% else %}
+        {% for serviceOffer in serviceOffers %}
+            {% include "./cards.html" with servicetype=servicetype isDetailView=False %}
+        {% endfor %}
+    {% endif %}
+</ul>
+

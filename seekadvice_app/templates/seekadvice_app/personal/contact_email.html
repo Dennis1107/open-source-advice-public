@@ -1,0 +1,18 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact request</title>
+</head>
+<body>
+    <h2>Hi {{recipientName}},</h2>
+    <h2><a href="https://open-source-advice.com/userprofile/username={{senderId}}/">{{senderName}}</a> has made a contact request to you:</h2>
+    <p>Message: {{ sendMessage }}</p>
+
+    <p><em> You can simply reply to this email to discuss further details. Keep in mind that our platform does not cover any billing or scheduling. Please notice that this is an automatic generated email. If you are not the right person please contact info@open-source-advice.com</em></p>
+    <a href="https://open-source-advice.com"><img src="https://res.cloudinary.com/dqdamgdeq/image/upload/v1658572526/logo_lfeiub.png"></a>
+</body>
+</html>

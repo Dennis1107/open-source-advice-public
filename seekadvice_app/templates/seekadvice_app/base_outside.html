@@ -1,0 +1,82 @@
+{% load static %}
+
+{% block extrahead %}
+{% endblock %}
+
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="Description" content="Seek Advice from Professionals">
+    <title>open-source-advice.com</title>
+    <link rel="icon" type="image/png" href="{% static 'img/logo.PNG' %}" />
+    <meta name="description" content="Ask the Open Source Community for Advice.">
+    
+
+    <script src="https://unpkg.com/htmx.org@1.7.0" integrity="sha384-EzBXYPt0/T6gxNp0nuPtLkmRpmDBbjg6WmCUZRLXBBwYYmwAUxzlSGej0ARHX0Bo" crossorigin="anonymous"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp"></script>
+    <link href="https://cdn.jsdelivr.net/npm/tom-select@2.0.1/dist/css/tom-select.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/tom-select@2.0.1/dist/js/tom-select.complete.min.js"></script>
+
+    <link rel="stylesheet" href="https://unpkg.com/flowbite@1.4.1/dist/flowbite.min.css" />
+    <script src="https://unpkg.com/flowbite@1.4.1/dist/flowbite.js"></script>
+    
+    <script
+      src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js"
+      defer
+    ></script>
+    <script src="{% static 'js/init-alpine.js' %}"></script>
+
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              'indigo': {
+                100: '#fefce8',
+                200: '#fef9c3',
+                300: '#fef08a',
+                400: '#fde047',
+                500: '#facc15',
+                600: '#eab308',
+                700: '#ca8a04',
+                800: '#a16207',
+                900: '#854d0e',
+              },
+              'green': {
+                100: '#fef9c3',
+              },
+              'sky': {
+                400: '#c2d4d1',
+              },
+              'neutral': {
+                100: '#efebdc',
+              },
+              'purple':{
+                600: "#eab308"
+              },
+
+
+            }
+          }
+        }
+      }
+    </script>
+    
+</head>
+
+<body hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'>
+   
+    <div class="container px-6 mx-auto grid" style="margin-top: 5px; margin-bottom: 20px;">
+        {% block body_block %}
+        {% endblock %}
+    </div>
+
+</body>
+
+</html>
